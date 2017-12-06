@@ -8922,7 +8922,7 @@
     },
     "read-config-file": {
       "version": "1.2.0",
-      "from": "read-config-file@1.2.0",
+      "from": "read-config-file@>=1.0.5 <2.0.0",
       "resolved": "https://registry.npmjs.org/read-config-file/-/read-config-file-1.2.0.tgz",
       "dev": true,
       "dependencies": {
