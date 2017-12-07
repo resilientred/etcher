@@ -39,7 +39,8 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState()).to.deep.equal({
           percentage: 0,
-          speed: 0
+          speed: 0,
+          humanSpeed: '0 B/s'
         })
       })
 
@@ -233,6 +234,18 @@ describe('Model: flashState', function () {
           })
         }).to.not.throw('Missing state speed')
       })
+
+      it('should not throw if speed is null', function () {
+        flashState.setFlashingFlag()
+        m.chai.expect(function () {
+          flashState.setProgressState({
+            type: 'write',
+            percentage: 50,
+            eta: 15,
+            speed: null
+          })
+        }).to.not.throw('Missing state speed')
+      })
     })
 
     describe('.getFlashResults()', function () {
@@ -256,7 +269,8 @@ describe('Model: flashState', function () {
         const currentFlashState = flashState.getFlashState()
         m.chai.expect(currentFlashState).to.deep.equal({
           percentage: 0,
-          speed: 0
+          speed: 0,
+          humanSpeed: '0 B/s'
         })
       })
 
@@ -271,7 +285,9 @@ describe('Model: flashState', function () {
         flashState.setFlashingFlag()
         flashState.setProgressState(state)
         const currentFlashState = flashState.getFlashState()
-        m.chai.expect(currentFlashState).to.deep.equal(state)
+        m.chai.expect(currentFlashState).to.deep.equal(Object.assign({
+          humanSpeed: '0 B/s'
+        }, state))
       })
     })
 
@@ -366,7 +382,8 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState()).to.not.deep.equal({
           percentage: 0,
-          speed: 0
+          speed: 0,
+          humanSpeed: '0 B/s'
         })
 
         flashState.unsetFlashingFlag({
@@ -376,7 +393,8 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState()).to.deep.equal({
           percentage: 0,
-          speed: 0
+          speed: 0,
+          humanSpeed: '0 B/s'
         })
       })
 
