@@ -247,6 +247,22 @@ describe('Model: flashState', function () {
           })
         }).to.not.throw('Missing state speed')
       })
+
+      it('should set the .humanSpeed field', function () {
+        const state = {
+          type: 'write',
+          percentage: 50,
+          eta: 15,
+          speed: 10000000,
+        }
+
+        flashState.setFlashingFlag()
+        flashState.setProgressState(state)
+
+        m.chai.expect(flashState.getFlashState()).to.deep.equal(_.assign({}, state, {
+          humanSpeed: '10 MB/s'
+        }))
+      })
     })
 
     describe('.getFlashResults()', function () {
