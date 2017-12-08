@@ -16,6 +16,7 @@
 
 'use strict'
 
+const _ = require('lodash')
 const m = require('mochainon')
 const flashState = require('../../../lib/shared/models/flash-state')
 
@@ -285,7 +286,7 @@ describe('Model: flashState', function () {
         flashState.setFlashingFlag()
         flashState.setProgressState(state)
         const currentFlashState = flashState.getFlashState()
-        m.chai.expect(currentFlashState).to.deep.equal(Object.assign({
+        m.chai.expect(currentFlashState).to.deep.equal(_.assign({
           humanSpeed: '0 B/s'
         }, state))
       })
