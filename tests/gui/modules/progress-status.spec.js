@@ -18,29 +18,30 @@ describe('Browser: progressStatus', function () {
       settings.set('validateWriteOnSuccess', true)
     })
 
-    it('should report 0% if percentage == 0 but speed != 0', function () {
+    it('should report 0% if percentage == 0 but speed != null', function () {
+      this.state.speed = 0
       m.chai.expect(progressStatus.fromFlashState(this.state)).to.equal('0% Flashing')
     })
 
-    it('should handle percentage == 0, type == write, unmountOnSuccess', function () {
-      this.state.speed = 0
+    it('should handle percentage == 0, type == write, unmountOnSuccess, speed == null', function () {
+      this.state.speed = null
       m.chai.expect(progressStatus.fromFlashState(this.state)).to.equal('Starting...')
     })
 
-    it('should handle percentage == 0, type == write, !unmountOnSuccess', function () {
-      this.state.speed = 0
+    it('should handle percentage == 0, type == write, !unmountOnSuccess, speed == null', function () {
+      this.state.speed = null
       settings.set('unmountOnSuccess', false)
       m.chai.expect(progressStatus.fromFlashState(this.state)).to.equal('Starting...')
     })
 
-    it('should handle percentage == 0, type == check, unmountOnSuccess', function () {
-      this.state.speed = 0
+    it('should handle percentage == 0, type == check, unmountOnSuccess, speed == null', function () {
+      this.state.speed = null
       this.state.type = 'check'
       m.chai.expect(progressStatus.fromFlashState(this.state)).to.equal('Validating...')
     })
 
-    it('should handle percentage == 0, type == check, !unmountOnSuccess', function () {
-      this.state.speed = 0
+    it('should handle percentage == 0, type == check, !unmountOnSuccess, speed == null', function () {
+      this.state.speed = null
       this.state.type = 'check'
       settings.set('unmountOnSuccess', false)
       m.chai.expect(progressStatus.fromFlashState(this.state)).to.equal('Validating...')

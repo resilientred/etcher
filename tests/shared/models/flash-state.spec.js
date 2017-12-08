@@ -40,8 +40,8 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState()).to.deep.equal({
           percentage: 0,
-          speed: 0,
-          humanSpeed: '0 B/s'
+          speed: null,
+          humanSpeed: ''
         })
       })
 
@@ -270,8 +270,8 @@ describe('Model: flashState', function () {
         const currentFlashState = flashState.getFlashState()
         m.chai.expect(currentFlashState).to.deep.equal({
           percentage: 0,
-          speed: 0,
-          humanSpeed: '0 B/s'
+          speed: null,
+          humanSpeed: ''
         })
       })
 
@@ -383,8 +383,8 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState()).to.not.deep.equal({
           percentage: 0,
-          speed: 0,
-          humanSpeed: '0 B/s'
+          speed: null,
+          humanSpeed: ''
         })
 
         flashState.unsetFlashingFlag({
@@ -394,8 +394,8 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState()).to.deep.equal({
           percentage: 0,
-          speed: 0,
-          humanSpeed: '0 B/s'
+          speed: null,
+          humanSpeed: ''
         })
       })
 

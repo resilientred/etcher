@@ -87,7 +87,7 @@ describe('Browser: WindowProgress', function () {
         it('should set the starting title', function () {
           this.state.type = 'write'
           this.state.percentage = 0
-          this.state.speed = 0
+          this.state.speed = null
           windowProgress.set(this.state)
           m.chai.expect(this.setTitleSpy).to.have.been.calledWith(' \u2013 Starting...')
         })
