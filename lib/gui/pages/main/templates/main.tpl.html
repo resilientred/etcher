@@ -99,7 +99,7 @@
             <span ng-bind="flash.getProgressButtonLabel()"></span>
         </progress-button>
 
-        <p class="step-footer step-footer-split" ng-show="main.state.getFlashState().speed != undefined && main.state.getFlashState().percentage != 100">
+        <p class="step-footer step-footer-split" ng-show="main.state.getFlashState().speed != undefined">
           <span ng-bind="main.state.getFlashState().humanSpeed"></span>
           <span>ETA: {{ main.state.getFlashState().eta | secondsToDate | amDateFormat:'m[m]ss[s]' }}</span>
         </p>
