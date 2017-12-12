@@ -1,0 +1,14 @@
+platform: linux
+inputs:
+  - name: etcher-git
+outputs:
+  - name: etcher-ready
+run:
+  path: /bin/sh
+  args:
+    - -exc
+    - |
+      dockerd &
+      cp -a etcher-git/. etcher-ready
+      ( cd etcher-ready && ./ci/install.sh -o linux -r $TARGET_ARCH )
+      tar czf etcher-ready/node_modules/bin.tar.gz etcher-ready/node_modules/.bin
